@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>PhoneGap Weather and Geo</title>
+	<link rel="stylesheet"  href="css/jquery.mobile.min.css">
+	
+
+	<link rel="stylesheet" href="css/leaflet.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/map.js"></script>
+	<script src="js/jquery.mobile.min.js"></script>
+	<script src="js/leaflet.js"></script>
+	<script src="js/app.js"></script>
+	<script src="phonegap.js"></script>
+	<script src="barcodescanner.js"></script>
+
+	
+
+</head>
+	
+<body>
+
+
+
+<div id="one" data-role="page">
+	<header data-role="header" data-position="fixed" data-id="appHeader">
+		<h1>Weather Forecast</h1>
+		<a href="index.html" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-btn-left ui-nodisc-icon ui-alt-icon">Back to the page</a>
+	</header>
+	<div data-role="content">
+		<h1 class="center">Weather App</h1>
+		<form>
+			City Name<input type="text" id="cityName" name="cityName"/>
+			<button type="submit" id="myButton" onclick="return findWeather()" data-inline="true">Get Location</button>
+
+		</form>
+
+		<table id="myTableId" style="visibility:hidden" border="1">
+				<tr>
+					<td>
+					<div id="cityNameMsg"></div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+					<div id="cityLatitudeMsg"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<div id="cityLongitudeMsg"></div>
+					</td>
+				</tr>
+		</table>
+
+			<div id="breakMsg"></div>
+			<div id="day1.1Id"></div>
+			<div id="day1.2Id"></div>
+			<div id="day1.3Id"></div>
+
+			<div id="day2.1Id"></div>
+			<div id="day2.2Id"></div>
+			<div id="day2.3Id"></div>
+
+			<div id="day3.1Id"></div>
+			<div id="day3.2Id"></div>
+			<div id="day3.3Id"></div>
+
+			<div id="day4.1Id"></div>
+			<div id="day4.2Id"></div>
+			<div id="day4.3Id"></div>
+
+			<div id="day5.1Id"></div>
+			<div id="day5.2Id"></div>
+			<div id="day5.3Id"></div>
+			
+
+	</div>
+
+	<script>
+	function findWeather(){
+		var cityName = document.getElementById("cityName").value;
+		var link = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+cityName+"&cnt=5&mode=json";
+		//alert(link);
+
+		$.getJSON(link, function (json) {
+
+			document.getElementById("myTableId").style.visibility = "visible"; 
+		    var name = json.city.name;
+		    var innnerOutput1 = document.getElementById("cityNameMsg");
+			innnerOutput1.innerHTML="<div style=\"color:Green\">City: "+name+"</div>";
+
+			var latitude = json.city.coord.lat;
+			var innnerOutput2 = document.getElementById("cityLatitudeMsg");
+			innnerOutput2.innerHTML="<div style=\"color:Green\">Latitude: "+latitude+"</div>";
+
+			var longitude = json.city.coord.lon;
+			var innnerOutput3 = document.getElementById("cityLongitudeMsg");
+			innnerOutput3.innerHTML="<div style=\"color:Green\">Longitude: "+longitude+"</div>";
+
+			var innnerOutput4 = document.getElementById("breakMsg");
+			innnerOutput4.innerHTML="<div style=\"color:Green\"><hr>"+json.list.length+ " Days Forecast:</div>";
+
+			var dayMin = new Array();
+			var dayMax = new Array();
+			var icon = new Array();
+			for(var i=0;i<json.list.length;i++){
+				dayMin[i] = json.list[i].temp.min;
+				dayMax[i] = json.list[i].temp.max;
+				icon[i] = json.list[i].weather[0].icon;
+				//alert(json.list[i].weather[0].icon);
+			}
+
+			var innnerOutput5 = document.getElementById("day1.1Id");
+			innnerOutput5.innerHTML="<div style=\"color:Green\">Day-1 Minimum Temperature: "+dayMin[0]+"</div>";
+
+			var innnerOutput7 = document.getElementById("day1.2Id");
+			innnerOutput7.innerHTML="<div style=\"color:Green\">Day-1 Maximum Temperature: "+dayMax[0]+"</div>";
+
+			var innnerOutput15 = document.getElementById("day1.3Id");
+			innnerOutput15.innerHTML="<div style=\"color:Green\">Day-1 ICON: "+icon[0]+"</div>";
+
+			var innnerOutput6 = document.getElementById("day2.1Id");
+			innnerOutput6.innerHTML="<div style=\"color:Green\">Day-2 Minimum Temperature: "+dayMin[1]+"</div>";
+
+			var innnerOutput8 = document.getElementById("day2.2Id");
+			innnerOutput8.innerHTML="<div style=\"color:Green\">Day-2 Maximum Temperature: "+dayMax[1]+"</div>";
+
+			var innnerOutput16 = document.getElementById("day2.3Id");
+			innnerOutput16.innerHTML="<div style=\"color:Green\">Day-2 ICON: "+icon[1]+"</div>";
+			
+
+			var innnerOutput9 = document.getElementById("day3.1Id");
+			innnerOutput9.innerHTML="<div style=\"color:Green\">Day-3 Minimum Temperature: "+dayMin[2]+"</div>";
+
+			var innnerOutput11 = document.getElementById("day3.2Id");
+			innnerOutput11.innerHTML="<div style=\"color:Green\">Day-3 Maximum Temperature: "+dayMax[2]+"</div>";
+
+			var innnerOutput17 = document.getElementById("day3.3Id");
+			innnerOutput17.innerHTML="<div style=\"color:Green\">Day-3 ICON: "+icon[2]+"</div>";
+
+			var innnerOutput10 = document.getElementById("day4.1Id");
+			innnerOutput10.innerHTML="<div style=\"color:Green\">Day-4 Minimum Temperature: "+dayMin[3]+"</div>";
+
+			var innnerOutput12 = document.getElementById("day4.2Id");
+			innnerOutput12.innerHTML="<div style=\"color:Green\">Day-4 Maximum Temperature: "+dayMax[3]+"</div>";
+
+			var innnerOutput18 = document.getElementById("day4.3Id");
+			innnerOutput18.innerHTML="<div style=\"color:Green\">Day-4 ICON: "+icon[3]+"</div>";
+
+			var innnerOutput13 = document.getElementById("day5.1Id");
+			innnerOutput13.innerHTML="<div style=\"color:Green\">Day-5 Minimum Temperature: "+dayMin[4]+"</div>";
+
+			var innnerOutput14 = document.getElementById("day5.2Id");
+			innnerOutput14.innerHTML="<div style=\"color:Green\">Day-5 Maximum Temperature: "+dayMax[4]+"</div>";
+
+			var innnerOutput19 = document.getElementById("day5.3Id");
+			innnerOutput19.innerHTML="<div style=\"color:Green\">Day-5 ICON: "+icon[4]+"</div>";
+
+			
+
+		});
+		
+
+
+		return false;
+	}
+
+
+		
+	</script>
+	<footer>
+	<p align="center">Copyright &copy;2015| Nikunj Ratnaparkhi</p>
+	</footer>
+
+	
+</div>
+
+
+
+
+
+
+</body>
+</html>
