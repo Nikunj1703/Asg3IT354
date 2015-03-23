@@ -98,6 +98,32 @@
 			document.getElementById("results").innerHTML="";
 
 			//document.getElementById("myTableId").style.visibility = "hidden"; 
+			if(document.getElementById("cityName").value.length==0){
+				document.getElementById("breakMsg").innerHTML = ""; 
+				document.getElementById("day1.1Id").innerHTML = ""; 
+				document.getElementById("day1.2Id").innerHTML = ""; 
+				document.getElementById("day1.3Id").innerHTML = ""; 
+				document.getElementById("day2.1Id").innerHTML = ""; 
+				document.getElementById("day2.2Id").innerHTML = ""; 
+				document.getElementById("day2.3Id").innerHTML = ""; 
+
+				document.getElementById("day3.1Id").innerHTML = ""; 
+				document.getElementById("day3.2Id").innerHTML = ""; 
+				document.getElementById("day3.3Id").innerHTML = ""; 
+				document.getElementById("day4.1Id").innerHTML = ""; 
+				document.getElementById("day4.2Id").innerHTML = ""; 
+				document.getElementById("day4.3Id").innerHTML = ""; 
+
+				document.getElementById("day5.1Id").innerHTML = ""; 
+				document.getElementById("day5.2Id").innerHTML = ""; 
+				document.getElementById("day5.3Id").innerHTML = ""; 
+
+				document.getElementById("myTableId").style.visibility = "hidden"; 
+
+				innnerOutputNoData = document.getElementById("results");
+				innnerOutputNoData.innerHTML="<div style=\"color:Red\">Please enter city name</div>";
+				exit(0);
+			}
 
 			if(json.cod == "404"){
 				document.getElementById("breakMsg").innerHTML = ""; 
@@ -118,7 +144,7 @@
 				document.getElementById("day5.1Id").innerHTML = ""; 
 				document.getElementById("day5.2Id").innerHTML = ""; 
 				document.getElementById("day5.3Id").innerHTML = ""; 
-				
+
 				document.getElementById("myTableId").style.visibility = "hidden"; 
 
 				innnerOutputNoData = document.getElementById("results");
@@ -140,7 +166,7 @@
 			innnerOutput3.innerHTML="<div style=\"color:Green\">Longitude: "+longitude+"</div>";
 
 			var innnerOutput4 = document.getElementById("breakMsg");
-			innnerOutput4.innerHTML="<div style=\"color:Green\"><hr>"+json.list.length+ " Days Forecast:</div>";
+			innnerOutput4.innerHTML="<div style=\"color:Green\"><hr>"+json.list.length+ " Days Forecast(Temperature in Fahrenheit-Rounded 2 decimal places)</div>";
 
 			var dayMin = new Array();
 			var dayMax = new Array();
@@ -153,47 +179,47 @@
 			
 
 			var innnerOutput5 = document.getElementById("day1.1Id");
-			innnerOutput5.innerHTML="<div style=\"color:Green\">Day-1 Minimum Temperature: "+dayMin[0]+"</div>";
+			innnerOutput5.innerHTML="<div style=\"color:Green\">Day-1 Minimum Temperature: "+(((dayMin[0]-273.15)*1.8)+32).toFixed(2)+"</div>";
 
 			var innnerOutput7 = document.getElementById("day1.2Id");
-			innnerOutput7.innerHTML="<div style=\"color:Green\">Day-1 Maximum Temperature: "+dayMax[0]+"</div>";
+			innnerOutput7.innerHTML="<div style=\"color:Green\">Day-1 Maximum Temperature: "+(((dayMax[0]-273.15)*1.8)+32).toFixed(2)+"</div>";
 
 			var innnerOutput15 = document.getElementById("day1.3Id");
 			innnerOutput15.innerHTML="<img src='http://openweathermap.org/img/w/"+icon[0]+".png'></img>";
 
 			var innnerOutput6 = document.getElementById("day2.1Id");
-			innnerOutput6.innerHTML="<div style=\"color:Green\">Day-2 Minimum Temperature: "+dayMin[1]+"</div>";
+			innnerOutput6.innerHTML="<div style=\"color:Green\">Day-2 Minimum Temperature: "+(((dayMin[1]-273.15)*1.8)+32).toFixed(2)+"</div>";
 
 			var innnerOutput8 = document.getElementById("day2.2Id");
-			innnerOutput8.innerHTML="<div style=\"color:Green\">Day-2 Maximum Temperature: "+dayMax[1]+"</div>";
+			innnerOutput8.innerHTML="<div style=\"color:Green\">Day-2 Maximum Temperature: "+(((dayMax[1]-273.15)*1.8)+32).toFixed(2)+"</div>";
 
 			var innnerOutput16 = document.getElementById("day2.3Id");
 			innnerOutput16.innerHTML="<img src='http://openweathermap.org/img/w/"+icon[1]+".png'></img>";
 			
 
 			var innnerOutput9 = document.getElementById("day3.1Id");
-			innnerOutput9.innerHTML="<div style=\"color:Green\">Day-3 Minimum Temperature: "+dayMin[2]+"</div>";
+			innnerOutput9.innerHTML="<div style=\"color:Green\">Day-3 Minimum Temperature: "+(((dayMin[2]-273.15)*1.8)+32).toFixed(2)+"</div>";
 
 			var innnerOutput11 = document.getElementById("day3.2Id");
-			innnerOutput11.innerHTML="<div style=\"color:Green\">Day-3 Maximum Temperature: "+dayMax[2]+"</div>";
+			innnerOutput11.innerHTML="<div style=\"color:Green\">Day-3 Maximum Temperature: "+(((dayMax[2]-273.15)*1.8)+32).toFixed(2)+"</div>";
 
 			var innnerOutput17 = document.getElementById("day3.3Id");
 			innnerOutput17.innerHTML="<img src='http://openweathermap.org/img/w/"+icon[2]+".png'></img>";
 
 			var innnerOutput10 = document.getElementById("day4.1Id");
-			innnerOutput10.innerHTML="<div style=\"color:Green\">Day-4 Minimum Temperature: "+dayMin[3]+"</div>";
+			innnerOutput10.innerHTML="<div style=\"color:Green\">Day-4 Minimum Temperature: "+(((dayMin[3]-273.15)*1.8)+32).toFixed(2)+"</div>";
 
 			var innnerOutput12 = document.getElementById("day4.2Id");
-			innnerOutput12.innerHTML="<div style=\"color:Green\">Day-4 Maximum Temperature: "+dayMax[3]+"</div>";
+			innnerOutput12.innerHTML="<div style=\"color:Green\">Day-4 Maximum Temperature: "+(((dayMax[3]-273.15)*1.8)+32).toFixed(2)+"</div>";
 
 			var innnerOutput18 = document.getElementById("day4.3Id");
 			innnerOutput18.innerHTML="<img src='http://openweathermap.org/img/w/"+icon[3]+".png'></img>";
 
 			var innnerOutput13 = document.getElementById("day5.1Id");
-			innnerOutput13.innerHTML="<div style=\"color:Green\">Day-5 Minimum Temperature: "+dayMin[4]+"</div>";
+			innnerOutput13.innerHTML="<div style=\"color:Green\">Day-5 Minimum Temperature: "+(((dayMin[4]-273.15)*1.8)+32).toFixed(2)+"</div>";
 
 			var innnerOutput14 = document.getElementById("day5.2Id");
-			innnerOutput14.innerHTML="<div style=\"color:Green\">Day-5 Maximum Temperature: "+dayMax[4]+"</div>";
+			innnerOutput14.innerHTML="<div style=\"color:Green\">Day-5 Maximum Temperature: "+(((dayMax[4]-273.15)*1.8)+32).toFixed(2)+"</div>";
 
 			var innnerOutput19 = document.getElementById("day5.3Id");
 			innnerOutput19.innerHTML="<img src='http://openweathermap.org/img/w/"+icon[4]+".png'></img>";
