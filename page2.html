@@ -6,10 +6,6 @@
 	<link rel="stylesheet" href="./css/jquery.mobile-1.4.5.min.css">
 	<script src="./js/jquery-1.11.2.min.js"></script>
 	<script src="./js/jquery.mobile-1.4.5.min.js"></script>
-
-
-
-	
 	<title>Current Location</title>
 
 </head>
@@ -27,11 +23,7 @@
 		<h1 class="center">Weather App</h1>
 
 		<form>
-			
 			<button type="submit" id="myButton" onclick="return findLocation()" data-inline="true">Get Location</button>
-
-			
-
 		</form>
 
 		<div id="lat"></div>
@@ -56,7 +48,6 @@
 		{
 		    lat = position.coords.latitude;
 		    lon = position.coords.longitude;
-		 //    //alert(lat);
 		    var innnerOutput1 = document.getElementById("lat");
 			innnerOutput1.innerHTML="<div style=\"color:Green\">Latitude: "+lat+"</div>";
 
@@ -66,9 +57,7 @@
 		});
 		
 		return false;
-		
 
-		//alert("Hello");
 	}
 
 
@@ -77,8 +66,8 @@
 	<div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
 	      <ul>
-	        <li><a href="index.html">Home</a></li>
-	        <li><a href="page1.html">Weather Forecast</a></li>
+	        <li><a href="./index.html">Home</a></li>
+	        <li><a href="./page1.html">Weather Forecast</a></li>
 	        <li><a href="page2.html" class="ui-btn-active">Current Location</a></li>
 	      </ul>
 	    </div>
@@ -87,11 +76,5 @@
 
 	
 </div>
-
-
-
-
-
-
 </body>
 </html>
