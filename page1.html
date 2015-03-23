@@ -23,6 +23,8 @@
 		<h1>Weather Forecast</h1>
 		
 	</header>
+	
+	
 	<div data-role="content">
 		<h1 class="center">Weather App</h1>
 		<form>
@@ -30,6 +32,8 @@
 			<button type="submit" id="myButton" onclick="return findWeather()" data-inline="true">Submit</button>
 
 		</form>
+		
+	<div id="myVals">
 
 		<table id="myTableId" style="visibility:hidden" border="1">
 				<tr>
@@ -49,7 +53,8 @@
 					</td>
 				</tr>
 		</table>
-
+		
+		
 			<div id="breakMsg"></div>
 			<div id="day1.1Id"></div>
 			<div id="day1.2Id"></div>
@@ -71,17 +76,55 @@
 			<div id="day5.1Id"></div>
 			<div id="day5.2Id"></div>
 			<div id="day5.3Id"></div>
-			
+		
 
 	</div>
+	<div id="results"></div>
+</div>
 
 	<script>
 	function findWeather(){
+
+
+
 		var cityName = document.getElementById("cityName").value;
 		var link = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+cityName+",usa&cnt=5&mode=json";
 		//alert(link);
+		
 
 		$.getJSON(link, function (json) {
+			
+
+			document.getElementById("results").innerHTML="";
+
+			//document.getElementById("myTableId").style.visibility = "hidden"; 
+
+			if(json.cod == "404"){
+				document.getElementById("breakMsg").innerHTML = ""; 
+				document.getElementById("day1.1Id").innerHTML = ""; 
+				document.getElementById("day1.2Id").innerHTML = ""; 
+				document.getElementById("day1.3Id").innerHTML = ""; 
+				document.getElementById("day2.1Id").innerHTML = ""; 
+				document.getElementById("day2.2Id").innerHTML = ""; 
+				document.getElementById("day2.3Id").innerHTML = ""; 
+
+				document.getElementById("day3.1Id").innerHTML = ""; 
+				document.getElementById("day3.2Id").innerHTML = ""; 
+				document.getElementById("day3.3Id").innerHTML = ""; 
+				document.getElementById("day4.1Id").innerHTML = ""; 
+				document.getElementById("day4.2Id").innerHTML = ""; 
+				document.getElementById("day4.3Id").innerHTML = ""; 
+
+				document.getElementById("day5.1Id").innerHTML = ""; 
+				document.getElementById("day5.2Id").innerHTML = ""; 
+				document.getElementById("day5.3Id").innerHTML = ""; 
+				
+				document.getElementById("myTableId").style.visibility = "hidden"; 
+
+				innnerOutputNoData = document.getElementById("results");
+				innnerOutputNoData.innerHTML="<div style=\"color:Red\">Results: No Data Found</div>";
+				exit(0);
+			}
 
 			document.getElementById("myTableId").style.visibility = "visible"; 
 		    var name = json.city.name;
